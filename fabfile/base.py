@@ -6,7 +6,7 @@ from fabric.state import output
 from helper.print_helper import task_puts
 
 env.parallel = True
-env. pool_size = 1
+env. pool_size = 5
 env.skip_bad_hosts = True
 env.abort_exception = Exception
 output['running'] = False
