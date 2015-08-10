@@ -6,7 +6,7 @@ PASSWORD=$3
 
 expect -c "
 set timeout 5
-spawn ssh ${USER}@${HOST} show run
+spawn ssh -o \"StrictHostKeyChecking no\" ${USER}@${HOST} show run
 
 expect -nocase \"password:\"
 send \"${PASSWORD}\n\"
