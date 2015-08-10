@@ -3,3 +3,4 @@ from debug import debug
 from role import role
 import util
 import config
+import git
