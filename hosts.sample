@@ -1,0 +1,3 @@
+[router]
+router1 ssh_host=192.168.1.1 ssh_user=admin ssh_pass=admin exec_pass=admin
+router2 ssh_host=192.168.1.2 ssh_user=admin ssh_pass=admin exec_pass=admin
