@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import util
 from fabric.api import *
 from fabric.state import output
 from fabric.colors import *
@@ -14,7 +15,13 @@ class CollectConfig(BaseTask):
   name = "collect"
   def run_task(self, *args, **kwargs):
     host_config = env.inventory.get_variables(env.host)
-    config = self.get_config(host_config['ssh_host'], host_config['ssh_user'], host_config['ssh_pass'], host_config['exec_pass'])
+    hostname = host_config['ssh_host']
+
+    if not util.tcping(hostname, 22, 1):
+      task_puts("host {0} does not exist. skip...".format(hostname))
+      return
+
+    config = self.get_config(hostname, host_config['ssh_user'], host_config['ssh_pass'], host_config['exec_pass'])
     self.write_config(env.host, config)
     # print config
 
