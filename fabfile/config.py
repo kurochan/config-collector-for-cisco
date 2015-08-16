@@ -26,7 +26,7 @@ class CollectConfig(BaseTask):
     # print config
 
   def get_config(self, hostname, ssh_user, ssh_pass, exec_pass):
-    script_name = "dump-config-cisco-ios.sh"
+    script_name = "dump-config-cisco-ios-no-enable.sh"
     config = local(os.path.dirname(os.path.abspath(__file__)) + "/../bin/{0} {1} {2} {3}".format(script_name, ssh_user, hostname, ssh_pass), capture = True)
     return config
 
