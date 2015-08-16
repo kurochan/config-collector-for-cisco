@@ -12,4 +12,4 @@ expect -nocase \"password:\"
 send \"${PASSWORD}\n\"
 interact
 exit
-" | grep -A -1 "!Command:"
+" | grep -A -1 "version"

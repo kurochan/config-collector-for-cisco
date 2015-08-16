@@ -21,12 +21,12 @@ class CollectConfig(BaseTask):
       task_puts("host {0} does not exist. skip...".format(hostname))
       return
 
-    config = self.get_config(hostname, host_config['ssh_user'], host_config['ssh_pass'], host_config['exec_pass'])
+    config = self.get_config(hostname, host_config['ssh_user'], host_config['ssh_pass'], host_config['exec_pass'], host_config['type'])
     self.write_config(env.host, config)
     # print config
 
-  def get_config(self, hostname, ssh_user, ssh_pass, exec_pass):
-    script_name = "dump-config-cisco-ios-no-enable.sh"
+  def get_config(self, hostname, ssh_user, ssh_pass, exec_pass, os_type):
+    script_name = "dump-config-cisco-{0}.sh".format(os_type)
     config = local(os.path.dirname(os.path.abspath(__file__)) + "/../bin/{0} {1} {2} {3}".format(script_name, ssh_user, hostname, ssh_pass), capture = True)
     return config
 
